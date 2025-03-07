@@ -1,0 +1,231 @@
+// Acadêmico: Lucas Antonio Rocha Santos
+// R.A.: 22134899-5
+
+
+use TravelExplorer
+
+db.createCollection("destinos")
+db.destinos.insertOne({
+  "destinoid": "",
+  "nome": "",
+  "pais": "",
+  "descricao": "",
+  "tags": []
+});
+
+db.createCollection("acomodacoes")
+db.acomodacoes.insertOne({
+  "acomodacaoid": "",
+  "nome": "",
+  "localizacao": "",
+  "preco_por_noite": 0,
+  "capacidade": 0,
+  "comodidades": []
+});
+
+db.createCollection("atividades")
+db.atividades.insertOne({
+  "atividadeid": "",
+  "nome": "",
+  "tipo": "",
+  "localizacao": "",
+  "preco": 0,
+  "faixa_etaria_minima": 0
+});
+
+db.createCollection("avaliacoes")
+db.avaliacoes.insertOne({
+  "avaliacaoid": "",
+  "usuarioid": "",
+  "destinoid": "",
+  "comentario": "",
+  "classificacao": 0
+});
+
+
+db.destinos.updateMany(
+  { "destinoid": "" },
+  { $set: {
+    "destinoid": "1",
+    "nome": "Rio de Janeiro",
+    "pais": "Brasil",
+    "descricao": "O Rio de Janeiro, conhecido como a Cidade Maravilhosa, é uma cidade brasileira famosa por suas belas praias, paisagens montanhosas, carnaval e o Cristo Redentor",
+    "tags": ["praia", "cidade", "cultural", "carnaval"]
+  }}
+);
+
+db.destinos.insertMany([
+  {
+    "destinoid": "2",
+    "nome": "Cataratas do Iguaçu",
+    "pais": "Brasil",
+    "descricao": "Foz do Iguaçu é famosa pelas impressionantes Cataratas do Iguaçu, uma das maiores quedas d'água do mundo, oferecendo espetaculares cachoeiras e uma rica biodiversidade.",
+    "tags": ["natureza", "cachoeira", "ecoturismo", "aventura"]
+  },
+  {
+   "destinoid": "3", 
+    "nome": "Balneário Camboriú",
+    "pais": "Brasil", 
+    "descricao": "Balneário Camboriú, é uma cidade brasileira conhecida como a 'Dubai Brasileira', com seus impressionantes arranha-céus, é famosa por suas praias deslumbrantes e vida noturna agitada, oferecendo uma variedade de atividades de lazer.",
+    "tags": ["praia", "cidade", "ecoturismo", "vida noturna"] 
+  },
+  {
+    "destinoid": "4",
+    "nome": "Salvador",
+    "pais": "Brasil",
+    "descricao": "Salvador, é uma cidade brasileira rica em cultura e história, conhecida por suas praias deslumbrantes,arquitetura colonial, culinária única e suas festas animadas, como o Carnaval.",
+    "tags": ["praia", "cidade", "cultural", "carnaval", "história"]
+  }
+]);
+
+db.acomodacoes.updateMany(
+  { "acomodacaoid": "" },
+  { $set: {
+    "acomodacaoid": "1",
+    "nome": "Hotel Ipanema",
+    "localizacao": {"cidade": "Rio de Janeiro", "pais": "Brasil"},
+    "preco_por_noite": 500,
+    "capacidade": 2,
+    "comodidades": ["estacionamento", "piscina", "restaurante", "ar-condicionado", "wi-fi"]
+    }}
+);
+
+db.acomodacoes.insertMany([
+  {
+    "acomodacaoid": "2",
+    "nome": "Pousada das Cataratas",
+    "localizacao": {"cidade": "Foz do Iguaçu", "pais": "Brasil"},
+    "preco_por_noite": 300,
+    "capacidade": 3,
+    "comodidades": ["estacionamento", "ar-condicionado", "restaurante", "café da manhã", "wi-fi"]
+  },
+  {
+    "acomodacaoid": "3",
+    "nome": "Hotel Dubai",
+    "localizacao": {"cidade": "Santa Catarina", "pais": "Brasil"},
+    "preco_por_noite": 400,
+    "capacidade": 4,
+    "comodidades": ["piscina", "academia", "estacionamento", "ar-condicionado", "banheira", "wi-fi"]
+  },
+  {
+    "acomodacaoid": "4" , 
+    "nome": "Pousada Salvador",
+    "localizacao": {"cidade": "Salvador", "pais": "Brasil"},
+    "preco_por_noite": 150,
+    "capacidade": 2,
+    "comodidades": ["café da manhã", "ar-condicionado", "wi-fi"]
+  }
+]);
+
+
+db.atividades.updateMany(
+  { "atividadeid": "" },
+  { $set: {
+    "atividadeid": "1",
+    "nome": "Bondinho Pão de Açúcar",
+    "tipo": "Passeio Turístico",
+    "localizacao": {"cidade": "Rio de Janeiro", "pais": "Brasil"},
+    "preco": 50,
+    "faixa_etaria_minima": 0
+  }}
+);
+
+db.atividades.insertMany([
+  {
+    "atividadeid": "2",
+    "nome": "Passeio de barco pelas Cataratas",
+    "tipo": "Aventura",
+    "localizacao": {"cidade": "Foz do Iguaçu", "pais": "Brasil"},
+    "preco": 80,
+    "faixa_etaria_minima": 12
+  },
+  {
+    "atividadeid": "3",
+    "nome": "Passeio de teleférico no Parque Unipraias",
+    "tipo": "Passeio Turístico",
+    "localizacao": {"cidade": "Santa Catarina", "pais": "Brasil"},
+    "preco": 60,
+    "faixa_etaria_minima": 0
+  },
+  {
+    "atividadeid": "4",
+    "nome": "Pelourinho",
+    "tipo": "Cultural",
+    "localizacao": {"cidade": "Salvador", "pais": "Brasil"},
+    "preco": 0,
+    "faixa_etaria_minima": 0
+  }
+]);
+
+db.avaliacoes.updateMany(
+  { "avaliacaoid": "" },
+  { $set: {
+    "avaliacaoid": "1",
+    "usuarioid": "user123",
+    "destinoid": "1",
+    "comentario": "O Rio de Janeiro é incrível! mas alguns pontos turísticos estavam lotados e a segurança preocupou um pouco",
+    "classificacao": 4
+  }}
+);
+
+db.avaliacoes.insertMany([
+  {
+    "avaliacaoid": "2",
+    "usuarioid": "user456",
+    "destinoid": "2",
+    "comentario": "Experiência inesquecível! As Cataratas são uma maravilha da natureza.",
+    "classificacao": 5
+  },
+  {
+    "avaliacaoid": "3",
+    "usuarioid": "user789",
+    "destinoid": "3",
+    "comentario": "Balneário Camboriú superou minhas expectativas! Praias incríveis e muitas opções de lazer. Experiência top! ",
+    "classificacao": 5
+  },
+  {
+    "avaliacaoid": "4",
+    "usuarioid": "user101",
+    "destinoid": "4",
+    "comentario": "Foi uma experiência interessante, mas a infraestrutura deixou a desejar",
+    "classificacao": 3
+  }
+]);
+
+
+// Consultas
+db.destinos.find({ "pais": "Brasil" })
+
+db.acomodacoes.find({ "preco_por_noite": { $lt: 400 } })
+
+db.atividades.find({ "tipo": "Passeio Turístico", "faixa_etaria_minima": { $lte: 10 } })
+
+db.avaliacoes.aggregate([
+  {
+    $group: {
+      _id: "$destinoid",
+      media: { $avg: "$classificacao" }
+    }
+  },
+  {
+    $match: { media: { $gt: 4 } }
+  },
+  {
+    $lookup: {
+      from: "destinos",
+      localField: "_id",
+      foreignField: "destinoid",
+      as: "destino"
+    }
+  },
+  {
+    $unwind: "$destino"
+  },
+  {
+    $project: {
+      _id: 0,
+      cidade: "$destino.nome",
+      media: 1
+    }
+  }
+])
